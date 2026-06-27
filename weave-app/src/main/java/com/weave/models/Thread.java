@@ -1,21 +1,52 @@
 package com.weave.models;
 
+import jakarta.persistence.*;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.UUID;
 
+@Entity
+@Table(name = "threads")
 public class Thread {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", updatable = false, nullable = false)
     UUID id;
+
+    @Column(name = "title", nullable = false)
     String title;
+
+    @Column(name = "description", columnDefinition = "TEXT")
     String description;
+
+    @Column(name = "completion_due_date")
     Date completionDueDate;
+
+    @ManyToMany
+    @JoinTable(
+        name = "thread_parents",
+        joinColumns = @JoinColumn(name = "thread_id"),
+        inverseJoinColumns = @JoinColumn(name = "parent_id")
+    )
     HashSet<Thread> parentThreads;
+
+    @ManyToMany(mappedBy = "parentThreads")
     HashSet<Thread> subThreads;
+
+    @ManyToOne
+    @JoinColumn(name = "assigned_to_id")
     User assignedTo;
+
+    @ManyToOne
+    @JoinColumn(name = "created_by_id", updatable = false)
     User createdBy;
+
+    @Column(name = "time_created", updatable = false)
     OffsetDateTime timeCreated;
+
+    @Column(name = "time_last_modified")
     OffsetDateTime timeLastModified;
 
     public Thread() {}
@@ -48,4 +79,4 @@ public class Thread {
     }
     public OffsetDateTime getTimeCreated() { return this.timeCreated; }
     public OffsetDateTime getTimeLastModified() { return this.timeLastModified; }
-} 
+}
