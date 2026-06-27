@@ -1,9 +1,9 @@
 package com.weave.models;
 
 import java.time.OffsetDateTime;
-import java.util.List;
 import java.util.UUID;
 import java.util.Date;
+import java.util.HashSet;
 
 public class Thread {
 
@@ -11,8 +11,8 @@ public class Thread {
     String title;
     String description;
     Date completionDueDate;
-    List<Thread> parentThreads;
-    List<Thread> subThreads;
+    HashSet<Thread> parentThreads;
+    HashSet<Thread> subThreads;
     User assignedTo;
     User createdBy;
     OffsetDateTime timeCreated;
@@ -28,7 +28,7 @@ public class Thread {
         this.completionDueDate = dueDate;
         return this;
     }
-    public List<Thread> getParentThreads() { return this.parentThreads; }
+    public HashSet<Thread> getParentThreads() { return this.parentThreads; }
     public Thread addParentThread(Thread parent) {
         this.parentThreads.add(parent);
         return this;
@@ -37,7 +37,7 @@ public class Thread {
         this.parentThreads.remove(parent);
         return this;
     }
-    public List<Thread> getSubThreads() { return this.subThreads; }
+    public HashSet<Thread> getSubThreads() { return this.subThreads; }
     public Thread addSubThread(Thread subThread) {
         this.subThreads.add(subThread);
         return this;

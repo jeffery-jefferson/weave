@@ -1,7 +1,5 @@
 package com.weave;
 
-import com.weave.models.User;
-
 import java.util.Scanner;
 
 public class Main {

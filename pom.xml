@@ -7,12 +7,11 @@
     <groupId>com.weave</groupId>
     <artifactId>weave</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>Weave</name>
     <description>A decentralised ITSM for smaller teams</description>
-
-    <properties>
+<properties>
         <java.version>22</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -21,6 +20,13 @@
     </properties>
 
     <dependencies>
+        <!-- JmDNS -->
+        <dependency>
+            <groupId>org.jmdns</groupId>
+            <artifactId>jmdns</artifactId>
+            <version>3.5.9</version>
+        </dependency>
+
         <!-- MySQL -->
         <dependency>
             <groupId>com.mysql</groupId>
